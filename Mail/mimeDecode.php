@@ -334,7 +334,6 @@ class Mail_mimeDecode extends PEAR
                 case 'multipart/parallel':
                 case 'multipart/appledouble': // Appledouble mail
                 case 'multipart/report': // RFC1892
-                case 'multipart/signed': // PGP
                 case 'multipart/digest':
                 case 'multipart/alternative':
                 case 'multipart/related':
@@ -714,8 +713,15 @@ class Mail_mimeDecode extends PEAR
         }
 
         // eatline is used by multipart/signed.
+        // ERP-modification: Regexes had issues if input started with boundary
+        // ERP-modification: Regexes had issues with last newline not accounting for possible carriage return
+        // ERP-modification: Regexes took nothing after -- so turned the two possibilities around and now it will properly find it
+        // ERP-modification: Some of the above were fixed by TheTechsTech/Mail_mimeDecode or mensler/Mail_mimeDecode but not all
+//ORI            preg_split("/\r?\n--".preg_quote($boundary, '/')."(|--)\n/", $input) :
+//FORK            \preg_split("/\r?\n?--" . \preg_quote($boundary, '/') . "(|--)\r?\n/", $input) :
         $tmp = $eatline ?
-            \preg_split("/\r?\n?--" . \preg_quote($boundary, '/') . "(|--)\r?\n/", $input) : \preg_split("/--" . \preg_quote($boundary, '/') . "((?=\s)|--)/", $input);
+            \preg_split("/\r?\n?--" . \preg_quote($boundary, '/') . "(--|)\r?\n?/", $input) :
+            \preg_split("/--" . \preg_quote($boundary, '/') . "((?=\s)|--)/", $input);
 
         $len = \count($tmp) - 1;
         for ($i = 1; $i < $len; $i++) {
