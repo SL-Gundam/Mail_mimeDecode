@@ -1,10 +1,10 @@
+## Fork Information
+
+This repository is a fork of TheTechsTech/Mail_mimeDecode which is a fork of pear/Mail_mimeDecode and mensler/Mail_mimeDecode.
+
+The fork contains modifications required by the EmailReporting plugin for MantisBT and is maintained by SL-Gundam.
+
 # Mail_mimeDecode v1.5.6
-
-[![Build Status](https://travis-ci.org/techno-express/Mail_mimeDecode.svg?branch=master)](https://travis-ci.org/techno-express/Mail_mimeDecode)
-
-This is a [Packagist](https://packagist.org) repository for loading Mail_mimeDecode via [Composer](https://getcomposer.org).
-
-    composer require forked/mail_mime-decode
 
 ## PEAR Info
 
