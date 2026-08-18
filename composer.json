@@ -1,5 +1,5 @@
 {
-    "name": "sl-gundam/mail_mime-decode",
+    "name": "sl-gundam/mail_mimedecode",
     "support": {
         "issues": "https://github.com/sl-gundam/Mail_mimeDecode/issues",
         "source": "https://github.com/pear/Mail_mimeDecode"
